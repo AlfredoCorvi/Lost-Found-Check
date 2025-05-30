@@ -1,0 +1,5 @@
+<?php
+hostname=;
+root=;
+pwd=;
+?>
