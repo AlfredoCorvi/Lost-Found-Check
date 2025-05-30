@@ -1,0 +1,12 @@
+body {
+  background: linear-gradient(to right, #f9eec0, #f7f1d0);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+#registro-cosas {
+  background-color: #ffffff;
+  width: 100%;
+  max-width: 700px;
+  border-radius: 10px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
