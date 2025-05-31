@@ -12,6 +12,11 @@ require 'conexion.php';
   <link rel="stylesheet" href="disenos/formularios.css"/>
 </head>
 <body>
+  <div id="LFC">
+    <div id="lfch1">
+      <center><strong><h1>LOST & FOUND CHECK</h1></strong></center>
+    </div>
+  </div>
   <div class="container d-flex justify-content-center align-items-center min-vh-100">
     <div class="card shadow p-4 w-100" style="max-width: 500px;">
       <!-- Nav tabs -->
@@ -50,7 +55,7 @@ require 'conexion.php';
             </div>
 
             <div class="d-flex justify-content-between">
-              <button class="btn btn-outline-secondary" type="reset">Limpiar</button>
+              <button class="btn btn-danger" type="reset">Limpiar</button>
               <button class="btn btn-success" type="submit">Registrarse</button>
             </div>
           </form>
@@ -74,7 +79,7 @@ require 'conexion.php';
             </div>
 
             <div class="d-flex justify-content-between">
-              <button class="btn btn-outline-secondary" type="reset">Limpiar</button>
+              <button class="btn btn-danger" type="reset">Limpiar</button>
               <button class="btn btn-success" type="submit">Entrar</button>
             </div>
           </form>
@@ -84,7 +89,8 @@ require 'conexion.php';
   </div>
 
     
-    <a href="reg_huesp.php"><input type="button" value="reg_huesp"></a>
+    <a href="admin_reporte.php"><input type="button" value="admrepo"></a>
+    <a href="huesped_reporte.php"><input type="button" value="huesrepo"></a>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js"></script>
 </body>
