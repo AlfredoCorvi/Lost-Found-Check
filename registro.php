@@ -1,5 +1,46 @@
 <?php
+session_start();
 require 'conexion.php';
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    // Recoger y sanitizar datos
+    $nombre = trim($_POST['nombre']);
+    $correo = trim($_POST['correo']);
+    $password = $_POST['password'];
+
+    // Validaciones básicas
+    if (empty($nombre) || empty($correo) || empty($password)) {
+        $error = "Por favor complete todos los campos.";
+    } elseif (!filter_var($correo, FILTER_VALIDATE_EMAIL)) {
+        $error = "Correo electrónico inválido.";
+    } elseif (strlen($password) < 6) {
+        $error = "La contraseña debe tener al menos 6 caracteres.";
+    } else {
+        // Verificar si el correo ya existe
+        $stmt = $conexion->prepare("SELECT id FROM usuarios WHERE correo = ?");
+        $stmt->bind_param("s", $correo);
+        $stmt->execute();
+        $stmt->store_result();
+
+        if ($stmt->num_rows > 0) {
+            $error = "El correo ya está registrado.";
+        } else {
+            // Hashear contraseña
+            $password_hash = password_hash($password, PASSWORD_DEFAULT);
+
+            // Insertar usuario
+            $stmt = $conexion->prepare("INSERT INTO usuarios (nombre, correo, password_hash) VALUES (?, ?, ?)");
+            $stmt->bind_param("sss", $nombre, $correo, $password_hash);
+
+            if ($stmt->execute()) {
+                // Registro exitoso
+                $success = "Registro completado. Ahora puede iniciar sesión.";
+            } else {
+                $error = "Error al registrar usuario.";
+            }
+        }
+    }
+}
 ?>
 
 <!DOCTYPE html>
@@ -39,24 +80,24 @@ require 'conexion.php';
       <div class="tab-content">
         <!-- Registro -->
         <div class="tab-pane fade show active" id="registro" role="tabpanel">
-          <form class="needs-validation" novalidate id="registro-cuenta">
+          <form class="needs-validation" novalidate id="registro-cuenta" method="POST" action="registro.php">
             <h4 class="mb-3 text-center">Crear Nueva Cuenta</h4>
 
             <div class="mb-3">
               <label for="nombre" class="form-label">Nombre Completo</label>
-              <input type="text" class="form-control" id="nombre" required>
+              <input type="text" class="form-control" id="nombre" name="nombre" required>
               <div class="invalid-feedback">Ingrese su nombre.</div>
             </div>
 
             <div class="mb-3">
               <label for="correo" class="form-label">Correo electrónico</label>
-              <input type="email" class="form-control" id="correo" required>
+              <input type="email" class="form-control" id="correo" name="correo" required>
               <div class="invalid-feedback">Ingrese un correo válido.</div>
             </div>
 
             <div class="mb-3">
               <label for="password" class="form-label">Contraseña</label>
-              <input type="password" class="form-control" id="password" required minlength="6">
+              <input type="password" class="form-control" id="password" name="password" required minlength="6">
               <div class="invalid-feedback">Mínimo 6 caracteres.</div>
             </div>
 
@@ -65,22 +106,23 @@ require 'conexion.php';
               <button class="btn btn-success" type="submit">Registrarse</button>
             </div>
           </form>
+
         </div>
 
         <!-- Inicio de sesión -->
         <div class="tab-pane fade" id="login" role="tabpanel">
-          <form class="needs-validation" novalidate id="inicio-sesion">
+          <form class="needs-validation" novalidate id="inicio-sesion" method="POST" action="login.php">
             <h4 class="mb-3 text-center">Iniciar Sesión</h4>
 
             <div class="mb-3">
               <label for="correo-login" class="form-label">Correo electrónico</label>
-              <input type="email" class="form-control" id="correo-login" required>
+              <input type="email" class="form-control" id="correo-login" name="correo" required>
               <div class="invalid-feedback">Ingrese su correo.</div>
             </div>
 
             <div class="mb-3">
               <label for="password-login" class="form-label">Contraseña</label>
-              <input type="password" class="form-control" id="password-login" required>
+              <input type="password" class="form-control" id="password-login" name="password" required>
               <div class="invalid-feedback">Ingrese su contraseña.</div>
             </div>
 

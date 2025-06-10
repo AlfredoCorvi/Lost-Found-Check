@@ -1,4 +1,5 @@
 <?php
+session_start();
 require 'conexion.php';
 ?>
 
@@ -95,7 +96,7 @@ require 'conexion.php';
       <div class="col-12 d-flex justify-content-between">
         <div class="col-12 d-flex justify-content-between">
         <button class="btn btn-danger" type="reset">Limpiar</button>
-        <a class="btn btn-warning" href="registro.php">Registros</a>
+        <a class="btn btn-warning" href="report.php">Registros</a>
         <button class="btn btn-success" type="submit">Enviar</button>
       </div>
     </form>
