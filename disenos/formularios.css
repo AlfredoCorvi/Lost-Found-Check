@@ -1,12 +1,107 @@
 body {
-  background: linear-gradient(to right, #f9eec0, #f7f1d0);
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  padding: 0;
 }
 
-#registro-cosas {
-  background-color: #ffffff;
-  width: 100%;
-  max-width: 700px;
+#videoFondo {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+  z-index: -1;
+}
+
+#LFC {
+  background-color: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  width: auto;
+  height: 50px;
+  margin: auto;
+  text-align: center;
+  color: white;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+#lfch1 h1 {
+  font-weight: bold;
+  font-size: 1.8rem;
+  color: #ffffffdd;
+  margin: 0;
+  padding-top: 8px;
+}
+
+/* Tarjeta con efecto vidrio */
+.card {
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: 20px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+  color: white;
+}
+
+/* Inputs y labels */
+.form-label {
+  color: #ffffffcc;
+  font-weight: 500;
+}
+
+.form-control {
+  background-color: rgba(255, 255, 255, 0.2);
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.3);
   border-radius: 10px;
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+.form-control::placeholder {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.form-control:focus {
+  background-color: rgba(255, 255, 255, 0.3);
+  color: white;
+  box-shadow: none;
+  outline: none;
+  border-color: #ddd;
+}
+
+/* Pestañas del formulario */
+.nav-tabs .nav-link {
+  color: #ffffffcc;
+  background: transparent;
+  border: none;
+}
+
+.nav-tabs .nav-link.active {
+  background-color: rgba(255, 255, 255, 0.2);
+  border-bottom: 2px solid #ffffff;
+  color: white;
+}
+
+/* Botones */
+.btn {
+  font-weight: 600;
+  border-radius: 10px;
+  padding: 10px 20px;
+}
+
+.btn-warning,
+.btn-danger,
+.btn-success {
+  color: white;
+  border: none;
+}
+
+.btn-warning { background-color: #f0ad4e; }
+.btn-danger  { background-color: #d9534f; }
+.btn-success { background-color: #5cb85c; }
+
+.btn:hover {
+  opacity: 0.9;
 }

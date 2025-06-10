@@ -12,7 +12,18 @@ require 'conexion.php';
   <link rel="stylesheet" href="disenos/formularios.css"/>
 </head>
 <body>
-  <div class="container d-flex justify-content-center align-items-center min-vh-100">
+  <video autoplay muted loop id="videoFondo">
+    <source src="images/playa.mp4" type="video/mp4">
+    Tu navegador no soporta video HTML5.
+  </video>
+  <div style="position: fixed; top:0; left:0; width:100%; height:100vh; background: rgba(0,0,0,0.3); z-index:-1;"></div>
+
+  <div id="LFC">
+    <div id="lfch1" class="mt-2">
+      <center><strong><h1>LOST & FOUND CHECK</h1></strong></center>
+    </div>
+  </div>
+  <div class="container d-flex justify-content-center align-items-center min-vh-90 mt-4">
     <div class="card shadow p-4 w-100" style="max-width: 500px;">
       <!-- Nav tabs -->
       <ul class="nav nav-tabs mb-4" id="formTabs" role="tablist">
@@ -50,7 +61,7 @@ require 'conexion.php';
             </div>
 
             <div class="d-flex justify-content-between">
-              <button class="btn btn-outline-secondary" type="reset">Limpiar</button>
+              <button class="btn btn-danger" type="reset">Limpiar</button>
               <button class="btn btn-success" type="submit">Registrarse</button>
             </div>
           </form>
@@ -74,7 +85,7 @@ require 'conexion.php';
             </div>
 
             <div class="d-flex justify-content-between">
-              <button class="btn btn-outline-secondary" type="reset">Limpiar</button>
+              <button class="btn btn-danger" type="reset">Limpiar</button>
               <button class="btn btn-success" type="submit">Entrar</button>
             </div>
           </form>
@@ -82,10 +93,6 @@ require 'conexion.php';
       </div>
     </div>
   </div>
-
-    
-    <a href="reg_huesp.php"><input type="button" value="reg_huesp"></a>
-
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
