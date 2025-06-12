@@ -44,4 +44,6 @@ body{
   border-color: #ddd;
 }
 
-
+#info{
+  width: 100%;
+}
