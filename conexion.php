@@ -5,10 +5,12 @@ $contrasena = "";
 $baseDeDatos = "lfc";
 
 // Crear conexión
-$conexion = new mysqli($host, $usuario, $contrasena, $baseDeDatos);
+$conn = new mysqli($host, $usuario, $contrasena, $baseDeDatos);
 
 // Verificar conexión
-if ($conexion->connect_error) {
-    die("Conexión fallida: " . $conexion->connect_error);
+if ($conn->connect_error) {
+    die("Conexión fallida: " . $conn->connect_error);
 }
+
+echo "Conexión exitosa";
 ?>
