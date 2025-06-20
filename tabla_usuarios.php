@@ -15,8 +15,25 @@ $resultado = $conexion->query("SELECT * FROM usuarios");
 <div class="container my-5">
   <h2 class="text-center mb-4">Usuarios Registrados</h2>
 
+  <!-- Filtro de búsqueda -->
+  <div class="row mb-3">
+    <div class="col-md-4">
+      <select id="columnaFiltro" class="form-select">
+        <option value="1">Nombre</option>
+        <option value="2">Correo</option>
+        <option value="3">Fecha Registro</option>
+      </select>
+    </div>
+    <div class="col-md-6">
+      <input type="text" id="busqueda" class="form-control" placeholder="Buscar...">
+    </div>
+    <div class="col-md-2">
+      <button class="btn btn-secondary w-100" onclick="limpiarBusqueda()">Limpiar</button>
+    </div>
+  </div>
+
   <div class="table-responsive">
-    <table class="table table-hover table-bordered table-light">
+    <table id="tablaUsuarios" class="table table-hover table-bordered table-light">
       <thead class="table-dark">
         <tr>
           <th>#</th>
@@ -44,6 +61,30 @@ $resultado = $conexion->query("SELECT * FROM usuarios");
 
   <a href="admin_panel.php" class="btn btn-danger mt-3">Volver al Panel</a>
 </div>
+
+<!-- Script de filtro -->
+<script>
+  const inputBusqueda = document.getElementById("busqueda");
+  const columnaFiltro = document.getElementById("columnaFiltro");
+
+  inputBusqueda.addEventListener("keyup", function () {
+    const filtro = inputBusqueda.value.toLowerCase();
+    const columna = parseInt(columnaFiltro.value);
+    const filas = document.querySelectorAll("#tablaUsuarios tbody tr");
+
+    filas.forEach(fila => {
+      const celda = fila.children[columna]?.innerText.toLowerCase() || "";
+      fila.style.display = celda.includes(filtro) ? "" : "none";
+    });
+  });
+
+  function limpiarBusqueda() {
+    inputBusqueda.value = "";
+    document.querySelectorAll("#tablaUsuarios tbody tr").forEach(fila => {
+      fila.style.display = "";
+    });
+  }
+</script>
 
 </body>
 </html>

@@ -97,7 +97,7 @@ require 'conexion.php';
       <div class="col-12 d-flex justify-content-between">
         <div class="col-12 d-flex justify-content-between">
         <button class="btn btn-danger" type="reset">Limpiar</button>
-        <a class="btn btn-warning" href="admin_panel.php">Registros</a>
+        <a class="btn btn-warning" href="admin_panel.php">Administrar</a>
         <input type="hidden" name="origen" value="admin_reporte.php">
         <button class="btn btn-success" type="submit">Enviar</button>
       </div>

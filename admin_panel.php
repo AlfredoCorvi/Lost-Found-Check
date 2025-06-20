@@ -79,8 +79,18 @@
       </a>
     </div>
 
+        <!-- Opción 3:Formulario Registro -->
+    <div class="col-md-4 col-sm-6">
+      <a href="reg_admin.php" class="text-decoration-none">
+        <div class="card card-option bg-warning  text-white">
+          <div class="card-body py-5">
+            <i class="bi bi-journal-text card-icon"></i>
+            <h4 class="mt-3">Formulario Registro</h4>
+          </div>
+        </div>
+      </a>
+    </div>
     <!-- Puedes agregar más opciones si es necesario -->
-    <!-- Ejemplo: Reportes, Configuración, etc. -->
     
   </div>
 </div>
