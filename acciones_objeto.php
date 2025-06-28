@@ -1,23 +1,15 @@
 <?php
 require 'conexion.php';
-<<<<<<< Updated upstream
-=======
 require 'vendor/autoload.php'; // Requiere Composer
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
->>>>>>> Stashed changes
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $id = intval($_POST['id']);
     $accion = $_POST['accion'];
 
     if ($accion === 'encontrado') {
-<<<<<<< Updated upstream
-        $stmt = $conexion->prepare("UPDATE reportes_objetos SET estado = 'encontrado' WHERE id = ?");
-        $stmt->bind_param("i", $id);
-        $stmt->execute();
-=======
         // 1. Marcar como encontrado
         $stmt = $conexion->prepare("UPDATE reportes_objetos SET estado = 'encontrado' WHERE id = ?");
         $stmt->bind_param("i", $id);
@@ -68,20 +60,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             }
         }
 
->>>>>>> Stashed changes
     } elseif ($accion === 'eliminar') {
         $stmt = $conexion->prepare("DELETE FROM reportes_objetos WHERE id = ?");
         $stmt->bind_param("i", $id);
         $stmt->execute();
     }
-<<<<<<< Updated upstream
-}
-
-header("Location: tabla_objetos.php");
-exit;
-=======
 
     header("Location: tabla_objetos.php");
     exit;
 }
->>>>>>> Stashed changes
