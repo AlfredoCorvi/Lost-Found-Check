@@ -24,6 +24,7 @@ $resultado = $conexion->query("SELECT * FROM usuarios");
         <option value="3">Fecha Registro</option>
       </select>
     </div>
+<<<<<<< HEAD
   <!-- Input con botones al lado -->
   <div class="col-12 col-md-5">
     <div class="input-group">
@@ -33,6 +34,15 @@ $resultado = $conexion->query("SELECT * FROM usuarios");
     </div>
   </div>
 </div>
+=======
+    <div class="col-md-6">
+      <input type="text" id="busqueda" class="form-control" placeholder="Buscar...">
+    </div>
+    <div class="col-md-2">
+      <button class="btn btn-secondary w-100" onclick="limpiarBusqueda()">Limpiar</button>
+    </div>
+  </div>
+>>>>>>> 24ce9a5496f593a428f532302aa81d41bcf3343a
 
   <div class="table-responsive">
     <table id="tablaUsuarios" class="table table-hover table-bordered table-light">
