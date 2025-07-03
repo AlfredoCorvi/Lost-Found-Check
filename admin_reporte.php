@@ -15,13 +15,14 @@ require 'conexion.php';
 </head>
 <body>
   <div class="container pt-3">
-  <div class="d-flex justify-content-end" style="margin-bottom: 8%;">
+  <div class="d-flex justify-content-end mb-0">
     <form action="logout.php" method="post">
       <button class="btn btn-danger" type="submit" id="cerrar">Cerrar Sesión</button>
     </form>
   </div>
 </div>
-  <div class="container d-flex justify-content-center align-items-center min-vh-100">
+  <div class="container d-flex justify-content-center py-5">
+
     <form class="row g-3 needs-validation p-4 rounded shadow" novalidate id="registro-cosas" action="guardar_reporte.php" method="POST" enctype="multipart/form-data">
       <h2 class="mb-4 text-center">Reporte de Objeto Perdido</h2>
 
@@ -97,13 +98,12 @@ require 'conexion.php';
       <div class="col-12 d-flex justify-content-between">
         <div class="col-12 d-flex justify-content-between">
         <button class="btn btn-danger" type="reset">Limpiar</button>
-        <a class="btn btn-warning" href="admin_panel.php">Registros</a>
+        <a class="btn btn-warning" href="admin_panel.php">Administrar</a>
         <input type="hidden" name="origen" value="admin_reporte.php">
         <button class="btn btn-success" type="submit">Enviar</button>
       </div>
     </form>
-</div>
-
+  </div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js"></script>
 
 <?php if (isset($_GET['success'])): ?>

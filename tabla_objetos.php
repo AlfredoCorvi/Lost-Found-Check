@@ -14,12 +14,35 @@ $resultado = $conexion->query("SELECT * FROM reportes_objetos");
 
 <div class="container my-5">
   <h2 class="text-center mb-4">Objetos Reportados</h2>
+  <!-- Filtro con búsqueda y selección de columna -->
+  <div class="row mb-3">
+  <!-- Selector de columna -->
+  <div class="col-12 col-md-3 mb-2 mb-md-0">
+    <select id="columnaFiltro" class="form-select">
+      <option value="1">Reportante</option>
+      <option value="2">No. Colaborador</option>
+      <option value="3">Correo</option>
+      <option value="4">Fecha</option>
+      <option value="5">Hotel</option>
+      <option value="6">Categoría</option>
+      <option value="8">Estado</option>
+    </select>
+  </div>
+
+  <!-- Input con botones al lado -->
+  <div class="col-12 col-md-9">
+    <div class="input-group">
+      <input type="text" id="busqueda" class="form-control" placeholder="Buscar...">
+      <button class="btn btn-danger" onclick="limpiarBusqueda()">Limpiar</button>
+      <a href="admin_panel.php" class="btn btn-secondary">Menú</a>
+    </div>
+  </div>
+</div>
 
   <div class="table-responsive">
-    <table class="table table-hover table-bordered table-light">
+    <table id="tablaObjetos" class="table table-hover table-bordered table-light">
       <thead class="table-dark">
         <tr>
-          <th>#</th>
           <th>Reportante</th>
           <th>No. Colaborador</th>
           <th>Correo</th>
@@ -27,6 +50,9 @@ $resultado = $conexion->query("SELECT * FROM reportes_objetos");
           <th>Hotel</th>
           <th>Categoría</th>
           <th>Descripción</th>
+          <th>Estado</th>
+          <th>Evidencia</th>
+          <th>Acciones</th>
         </tr>
       </thead>
       <tbody>
@@ -34,8 +60,8 @@ $resultado = $conexion->query("SELECT * FROM reportes_objetos");
         if ($resultado->num_rows > 0) {
           $i = 1;
           while ($fila = $resultado->fetch_assoc()) {
+            $estado = htmlspecialchars($fila['estado']);
             echo "<tr>";
-            echo "<td>$i</td>";
             echo "<td>" . htmlspecialchars($fila['nombre_reportante']) . "</td>";
             echo "<td>" . htmlspecialchars($fila['numero_colaborador']) . "</td>";
             echo "<td>" . htmlspecialchars($fila['correo']) . "</td>";
@@ -43,19 +69,77 @@ $resultado = $conexion->query("SELECT * FROM reportes_objetos");
             echo "<td>" . htmlspecialchars($fila['hotel']) . "</td>";
             echo "<td>" . htmlspecialchars($fila['categoria']) . "</td>";
             echo "<td>" . htmlspecialchars($fila['descripcion']) . "</td>";
+            echo "<td>" . $estado . "</td>";
+            echo "<td>";
+            if (!empty($fila['foto_nombre'])) {
+                $rutaImagen = 'uploads/' . htmlspecialchars($fila['foto_nombre']);
+                echo "<a href='$rutaImagen' target='_blank'>";
+                echo "<img src='$rutaImagen' alt='Evidencia' width='100' height='100' style='object-fit:cover; border-radius:8px;'>";
+                echo "</a>";
+            } else {
+                echo "Sin evidencia";
+            }
+            echo "</td>";
+
+            echo "<td>";
+            echo "<div class='d-flex justify-content-center gap-2'>";
+
+            // Botón ENCONTRADO
+            echo "<form method='POST' action='acciones_objeto.php'>";
+            echo "<input type='hidden' name='id' value='" . $fila['id'] . "'>";
+            echo "<input type='hidden' name='accion' value='encontrado'>";
+            if ($estado === 'encontrado') {
+              echo "<button type='submit' class='btn btn-secondary btn-sm' disabled>Encontrado</button>";
+            } else {
+              echo "<button type='submit' class='btn btn-success btn-sm'>Encontrado</button>";
+            }
+            echo "</form>";
+
+            // Botón ELIMINAR
+            echo "<form method='POST' action='acciones_objeto.php'>";
+            echo "<input type='hidden' name='id' value='" . $fila['id'] . "'>";
+            echo "<input type='hidden' name='accion' value='eliminar'>";
+            echo "<button type='submit' class='btn btn-danger btn-sm'>Eliminar</button>";
+            echo "</form>";
+
+            echo "</div>";
+            echo "</td>";
+
             echo "</tr>";
             $i++;
           }
         } else {
-          echo "<tr><td colspan='8' class='text-center'>No hay objetos reportados.</td></tr>";
+          echo "<tr><td colspan='10' class='text-center'>No hay objetos reportados.</td></tr>";
         }
         ?>
       </tbody>
     </table>
   </div>
-
-  <a href="admin_panel.php" class="btn btn-danger mt-3">Volver al Panel</a>
 </div>
+
+<!-- Script de filtro -->
+<script>
+  const inputBusqueda = document.getElementById("busqueda");
+  const columnaFiltro = document.getElementById("columnaFiltro");
+
+  inputBusqueda.addEventListener("keyup", function () {
+    const filtro = inputBusqueda.value.toLowerCase();
+    const columna = parseInt(columnaFiltro.value);
+    const filas = document.querySelectorAll("#tablaObjetos tbody tr");
+
+    filas.forEach(fila => {
+      const celda = fila.children[columna]?.innerText.toLowerCase() || "";
+      fila.style.display = celda.includes(filtro) ? "" : "none";
+    });
+  });
+
+  function limpiarBusqueda() {
+    inputBusqueda.value = "";
+    document.querySelectorAll("#tablaObjetos tbody tr").forEach(fila => {
+      fila.style.display = "";
+    });
+  }
+</script>
 
 </body>
 </html>

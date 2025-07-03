@@ -15,14 +15,14 @@ require 'conexion.php';
 <body>
 
 <div class="container pt-3">
-  <div class="d-flex justify-content-end mb-4">
+  <div class="d-flex justify-content-end mb-0">
     <form action="logout.php" method="post">
       <button class="btn btn-danger" type="submit" id="cerrar">Cerrar Sesión</button>
     </form>
   </div>
 </div>
 
-<div class="container d-flex justify-content-center align-items-center min-vh-100" id="resgistros">
+<div class="container d-flex justify-content-center py-5">
   <form class="row g-3 needs-validation p-4 rounded shadow" novalidate id="registro-cosas" action="guardar_reporte.php" method="POST" enctype="multipart/form-data">
     <h2 class="mb-4 text-center">Reporte de Objeto Perdido</h2>
 

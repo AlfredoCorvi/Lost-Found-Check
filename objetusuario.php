@@ -11,7 +11,7 @@ if (!isset($_SESSION['correo'])) {
 $correo_usuario = $_SESSION['correo'];
 
 // Consulta de reportes del usuario logueado
-$sql = "SELECT id, nombre_reportante, fecha_perdida, hotel, categoria, descripcion FROM reportes_objetos WHERE correo = ?";
+$sql = "SELECT id, nombre_reportante, fecha_perdida, hotel, categoria, descripcion, estado FROM reportes_objetos WHERE correo = ?";
 $stmt = $conexion->prepare($sql);
 $stmt->bind_param("s", $correo_usuario);
 $stmt->execute();
@@ -79,8 +79,10 @@ $resultado = $stmt->get_result();
           <tr>
             <th>#</th>
             <th>Nombre</th>
+            <th>Objeto</th>
             <th>Fecha</th>
             <th>Hotel</th>
+            <th>Estado</th>
           </tr>
         </thead>
         <tbody>
@@ -90,8 +92,10 @@ $resultado = $stmt->get_result();
               echo "<tr>";
               echo "<th scope='row'>{$contador}</th>";
               echo "<td>" . htmlspecialchars($fila['nombre_reportante']) . "</td>";
+              echo "<td>" . htmlspecialchars($fila['descripcion']) . "</td>";
               echo "<td>" . htmlspecialchars($fila['fecha_perdida']) . "</td>";
               echo "<td>" . htmlspecialchars($fila['hotel']) . "</td>";
+              echo "<td>" . htmlspecialchars($fila['estado']) . "</td>";
               echo "</tr>";
               $contador++;
           }
