@@ -80,14 +80,6 @@ require 'conexion.php';
       <div class="invalid-feedback">Suba una imagen del objeto.</div>
     </div>
 
-    <div class="col-12">
-      <div class="form-check">
-        <input class="form-check-input" type="checkbox" id="acepto" name="acepto" required>
-        <label class="form-check-label" for="acepto">Confirmo que la información es verídica. <span style="color: red;">*</span></label>
-        <div class="invalid-feedback">Debe confirmar para continuar.</div>
-      </div>
-    </div>
-
     <div class="col-12 d-flex justify-content-between">
       <button class="btn btn-danger" type="reset">Limpiar</button>
       <a class="btn btn-warning" href="objetusuario.php">Reportes</a>

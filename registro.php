@@ -109,6 +109,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <!-- Inicio de sesión -->
         <div class="tab-pane fade" id="login" role="tabpanel">
           <form class="needs-validation" novalidate id="inicio-sesion" method="POST" action="login.php">
+            <input type="hidden" name="origen" value="registro.php">
             <h4 class="mb-3 text-center">Iniciar Sesión</h4>
 
             <div class="mb-3">

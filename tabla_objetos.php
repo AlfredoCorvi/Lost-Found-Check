@@ -19,14 +19,15 @@ $resultado = $conexion->query("SELECT * FROM reportes_objetos");
   <!-- Selector de columna -->
   <div class="col-12 col-md-3 mb-2 mb-md-0">
     <select id="columnaFiltro" class="form-select">
-      <option value="1">Reportante</option>
-      <option value="2">No. Colaborador</option>
-      <option value="3">Correo</option>
-      <option value="4">Fecha</option>
-      <option value="5">Hotel</option>
-      <option value="6">Categoría</option>
-      <option value="8">Estado</option>
+      <option value="0">Reportante</option>
+      <option value="1">No. Colaborador</option>
+      <option value="2">Correo</option>
+      <option value="3">Fecha</option>
+      <option value="4">Hotel</option>
+      <option value="5">Categoría</option>
+      <option value="7">Estado</option>
     </select>
+
   </div>
 
   <!-- Input con botones al lado -->
@@ -39,26 +40,6 @@ $resultado = $conexion->query("SELECT * FROM reportes_objetos");
   </div>
 </div>
 
-  <!-- Filtro con búsqueda y selección de columna -->
-  <div class="row mb-3">
-    <div class="col-md-4">
-      <select id="columnaFiltro" class="form-select">
-        <option value="1">Reportante</option>
-        <option value="2">No. Colaborador</option>
-        <option value="3">Correo</option>
-        <option value="4">Fecha</option>
-        <option value="5">Hotel</option>
-        <option value="6">Categoría</option>
-        <option value="8">Estado</option>
-      </select>
-    </div>
-    <div class="col-md-6">
-      <input type="text" id="busqueda" class="form-control" placeholder="Buscar...">
-    </div>
-    <div class="col-md-2">
-      <button class="btn btn-secondary w-100" onclick="limpiarBusqueda()">Limpiar</button>
-    </div>
-  </div>
 
   <div class="table-responsive">
     <table id="tablaObjetos" class="table table-hover table-bordered table-light">
@@ -72,10 +53,7 @@ $resultado = $conexion->query("SELECT * FROM reportes_objetos");
           <th>Categoría</th>
           <th>Descripción</th>
           <th>Estado</th>
-<<<<<<< HEAD
           <th>Evidencia</th>
-=======
->>>>>>> 24ce9a5496f593a428f532302aa81d41bcf3343a
           <th>Acciones</th>
         </tr>
       </thead>
@@ -95,7 +73,6 @@ $resultado = $conexion->query("SELECT * FROM reportes_objetos");
             echo "<td>" . htmlspecialchars($fila['descripcion']) . "</td>";
             echo "<td>" . $estado . "</td>";
             echo "<td>";
-<<<<<<< HEAD
             if (!empty($fila['foto_nombre'])) {
                 $rutaImagen = 'uploads/' . htmlspecialchars($fila['foto_nombre']);
                 echo "<a href='$rutaImagen' target='_blank'>";
@@ -111,11 +88,6 @@ $resultado = $conexion->query("SELECT * FROM reportes_objetos");
 
             // Botón ENCONTRADO
             echo "<form method='POST' action='acciones_objeto.php'>";
-=======
-
-            // Botón ENCONTRADO
-            echo "<form method='POST' action='acciones_objeto.php' style='display:inline-block;'>";
->>>>>>> 24ce9a5496f593a428f532302aa81d41bcf3343a
             echo "<input type='hidden' name='id' value='" . $fila['id'] . "'>";
             echo "<input type='hidden' name='accion' value='encontrado'>";
             if ($estado === 'encontrado') {
@@ -123,29 +95,18 @@ $resultado = $conexion->query("SELECT * FROM reportes_objetos");
             } else {
               echo "<button type='submit' class='btn btn-success btn-sm'>Encontrado</button>";
             }
-<<<<<<< HEAD
             echo "</form>";
 
             // Botón ELIMINAR
             echo "<form method='POST' action='acciones_objeto.php'>";
-=======
-            echo "</form> ";
-
-            // Botón ELIMINAR
-            echo "<form method='POST' action='acciones_objeto.php' style='display:inline-block; margin-left:5px;'>";
->>>>>>> 24ce9a5496f593a428f532302aa81d41bcf3343a
             echo "<input type='hidden' name='id' value='" . $fila['id'] . "'>";
             echo "<input type='hidden' name='accion' value='eliminar'>";
             echo "<button type='submit' class='btn btn-danger btn-sm'>Eliminar</button>";
             echo "</form>";
 
-<<<<<<< HEAD
             echo "</div>";
             echo "</td>";
 
-=======
-            echo "</td>";
->>>>>>> 24ce9a5496f593a428f532302aa81d41bcf3343a
             echo "</tr>";
             $i++;
           }

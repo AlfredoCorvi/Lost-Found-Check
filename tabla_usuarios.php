@@ -24,7 +24,6 @@ $resultado = $conexion->query("SELECT * FROM usuarios");
         <option value="3">Fecha Registro</option>
       </select>
     </div>
-<<<<<<< HEAD
   <!-- Input con botones al lado -->
   <div class="col-12 col-md-5">
     <div class="input-group">
@@ -34,15 +33,6 @@ $resultado = $conexion->query("SELECT * FROM usuarios");
     </div>
   </div>
 </div>
-=======
-    <div class="col-md-6">
-      <input type="text" id="busqueda" class="form-control" placeholder="Buscar...">
-    </div>
-    <div class="col-md-2">
-      <button class="btn btn-secondary w-100" onclick="limpiarBusqueda()">Limpiar</button>
-    </div>
-  </div>
->>>>>>> 24ce9a5496f593a428f532302aa81d41bcf3343a
 
   <div class="table-responsive">
     <table id="tablaUsuarios" class="table table-hover table-bordered table-light">
@@ -64,10 +54,15 @@ $resultado = $conexion->query("SELECT * FROM usuarios");
               <td><?= htmlspecialchars($fila['correo']) ?></td>
               <td><?= $fila['fecha_registro'] ?></td>
               <td>
-                <form method="POST" action="eliminar_usuario.php" onsubmit="return confirm('¿Estás seguro de que deseas eliminar este usuario?');">
-                  <input type="hidden" name="id" value="<?= $fila['id'] ?>">
-                  <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
-                </form>
+              <!-- Botón que abre el modal -->
+              <button class="btn btn-danger btn-sm" 
+                      data-bs-toggle="modal" 
+                      data-bs-target="#modalEliminar" 
+                      data-id="<?= $fila['id'] ?>" 
+                      data-nombre="<?= htmlspecialchars($fila['nombre']) ?>">
+                Eliminar
+              </button>
+
               </td>
             </tr>
           <?php endwhile; ?>
@@ -101,6 +96,40 @@ $resultado = $conexion->query("SELECT * FROM usuarios");
       fila.style.display = "";
     });
   }
+</script>
+
+<!-- Modal de confirmación -->
+<div class="modal fade" id="modalEliminar" tabindex="-1" aria-labelledby="modalEliminarLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <form method="POST" action="eliminar_usuario.php" class="modal-content bg-dark text-white border-light">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modalEliminarLabel">Confirmar Eliminación</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+      </div>
+      <div class="modal-body">
+        <p>¿Estás seguro de que deseas eliminar al usuario <strong id="usuarioNombre"></strong>?</p>
+        <input type="hidden" name="id" id="usuarioId">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        <button type="submit" class="btn btn-danger">Eliminar</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+  const modalEliminar = document.getElementById('modalEliminar');
+  modalEliminar.addEventListener('show.bs.modal', function (event) {
+    const button = event.relatedTarget;
+    const userId = button.getAttribute('data-id');
+    const userName = button.getAttribute('data-nombre');
+
+    document.getElementById('usuarioId').value = userId;
+    document.getElementById('usuarioNombre').textContent = userName;
+  });
 </script>
 
 </body>

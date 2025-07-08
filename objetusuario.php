@@ -71,9 +71,15 @@ $resultado = $stmt->get_result();
   </style>
 </head>
 <body>
+
   <div class="center-wrapper">
+    <div class="px-4 px-md-5 w-70">
+  <h2 class="text-white mb-4 text-center" style="border-radius: 5px; background-color: rgba(0, 0, 0, 0.63);">
+    OBJETOS REPORTADOS
+  </h2>
+</div>
+
     <div class="glass-box table-responsive text-center" style="max-width: 900px; width: 100%;">
-      <h2 class="text-white mb-4">OBJETOS REPORTADOS</h2>
       <table class="table table-hover table-bordered text-white mb-0">
         <thead class="table-light text-dark">
           <tr>
